@@ -1,143 +1,136 @@
-# 🤖 Buddy AI – Dein smarter KI-Sprachlehrer
+# 🤖 Buddy AI – Your AI Language Teacher
 
-Buddy AI ist eine interaktive, hochgradig optimierte Lernplattform, die Next.js, Firebase und die Google Gemini API kombiniert, um ein dynamisches und personalisiertes Sprachlernerlebnis zu schaffen. Das System funktioniert wie eine native mobile App und bietet bidirektionalen Echtzeit-Sprachchat, intelligente Dokumentenanalyse und automatische Kontext-Erkennung.
+Buddy AI is a language-learning web app built with Next.js, Firebase and the Google Gemini API. Upload your textbook, notes or a photo, then talk to an AI teacher in real time by voice. The teacher understands your material and adapts to your level. It works on phones like a native app and can be installed to your home screen.
 
-🔗 **[Live-Demo ausprobieren](https://ai-teacher-umber-delta.vercel.app)**
+🔗 **[Try the live demo](https://ai-teacher-umber-delta.vercel.app)**
+
+> Original project by [mohamad-alaaeddine](https://github.com/mohamad-alaaeddine/ai-teacher) (README in German). This fork focuses on English-speaking users: English documentation, English interface text and installable-app support.
 
 ---
 
 ## 📸 Screenshots
 
-| Setup Screen | Classroom |
+| Setup screen | Classroom |
 |:---:|:---:|
-| ![Setup Screen](https://raw.githubusercontent.com/mohamad-alaaeddine/ai-teacher/main/public/screenshots/Setup.png) | ![Classroom](https://raw.githubusercontent.com/mohamad-alaaeddine/ai-teacher/main/public/screenshots/Class%20Room.png) |
-| API Key, Sprache, Modus & Datei-Upload | Live Voice Chat, Token-Zähler & Bild-Panel |
+| ![Setup screen](public/screenshots/Setup.png) | ![Classroom](public/screenshots/Class%20Room.png) |
+| API key, language, mode and file upload | Live voice chat, token counter and image panel |
 
 ---
 
-## 💡 Die Lücke, die Buddy AI schließt
+## 💡 The gap Buddy AI fills
 
-Zwei der mächtigsten KI-Tools für Lernende haben bisher eine entscheidende Einschränkung:
+| Tool | Strength | Limitation |
+|------|----------|------------|
+| **Gemini Live** | Real-time voice conversation | Can't read your files |
+| **NotebookLM** | Deep analysis of documents | No live conversation |
 
-| Tool | Stärke | Einschränkung |
-|------|--------|---------------|
-| **Gemini Live** | Echtzeit-Gespräch & Sprachinteraktion | Keine Datei-Analyse möglich |
-| **NotebookLM** | Tiefe Dokument-Analyse & Zusammenfassungen | Kein Live-Gespräch möglich |
-
-**Buddy AI vereint beide Welten:** Lade dein Schulbuch, deine Notizen oder ein Bild hoch — und unterhalte dich dann in Echtzeit per Sprache mit einem KI-Lehrer, der den Inhalt vollständig versteht. ✅
+**Buddy AI does both:** upload your material, then have a live spoken lesson with a teacher who has read it.
 
 ---
 
-## 🌟 Hauptmerkmale & Einzigartige Funktionen
+## 🌟 Main features
 
-### 📱 1. Natives App-Erlebnis & Vollständige Immersion
-* **Responsive Design:** Das Layout ist so optimiert, dass es sich auf mobilen Geräten wie eine echte native App anfühlt (inklusive Landscape-Mode Anpassungen).
-* **Vollständige Immersion:** Der Nutzer wählt seine Muttersprache und seine Zielsprache. Um das Eintauchen in die neue Sprache zu maximieren, passt sich die **gesamte Benutzeroberfläche** (UI) — inklusive aller Buttons, Menüs, Meldungen und Beschriftungen — automatisch der Zielsprache an. So lernt der Schüler nicht nur durch Gespräche, sondern ist von der ersten Sekunde an vollständig von der neuen Sprache umgeben.
+### 📱 1. Feels like a native app
+* **Responsive layout** built for phones and tablets, including landscape mode.
+* **Installable (PWA):** add it to your home screen and it opens in its own window with its own icon.
+* **Full immersion:** pick your native language and the language you want to learn. The whole interface (buttons, menus, messages) switches to the language you're learning, so you practise from the first second.
 
-**Unterstützte Sprachen (20):**
+**20 supported languages:** English, German, Arabic, Spanish, French, Italian, Chinese, Hindi, Bengali, Portuguese, Russian, Urdu, Indonesian, Japanese, Turkish, Korean, Vietnamese, Dutch, Persian, Polish.
 
-Englisch, Deutsch, Arabisch, Spanisch, Französisch, Italienisch, Chinesisch, Hindi, Bengalisch, Portugiesisch, Russisch, Urdu, Indonesisch, Japanisch, Türkisch, Koreanisch, Vietnamesisch, Niederländisch, Persisch, Polnisch
+### 🧠 2. Automatic flashcards
+* The AI follows the conversation in real time.
+* When you don't know a word, use it wrongly or ask what it means, it's saved **automatically** as a flashcard with a translation into your native language (stored in Firebase Firestore).
+* Open **Flashcards** at any time to review, edit or delete your words.
 
-### 🧠 2. Kontextbezogene Intelligenz & Auto-Karteikarten
-* Der KI-Lehrer analysiert den Kontext des Gesprächs in Echtzeit.
-* Wenn die KI bemerkt, dass der Schüler ein Wort nicht kennt, falsch verwendet oder aktiv nach der Bedeutung fragt, wird dieses Wort **automatisch** als Vokabelkarte (Flashcard) mit der Übersetzung in die Muttersprache in der Firebase-Datenbank (Firestore) gespeichert.
-* Schüler können über den "Flashcards"-Button jederzeit auf ihre gesammelten Vokabeln zugreifen, bearbeiten und löschen.
+### 🏫 3. The classroom
+* **Live voice mode:** real-time voice chat over WebSockets, with automatic reconnect if the connection drops.
+* **Voice to text:** speak instead of typing and your words appear in the chat.
+* **Image upload in the chat:** take a photo or upload an image and talk about it straight away.
+* **Live token counter** at the top of the screen.
+* **Session report:** one click on "Report" gives you an honest summary of the lesson, your mistakes and your progress.
 
-### 🏫 3. Der interaktive Klassenraum (Classroom)
-Der Classroom bietet maximale Flexibilität für jeden Lernstil:
-* **Live Voice Mode:** Ein flüssiger, latenzfreier Echtzeit-Sprachchat (Bidi-WebSockets) direkt mit der KI — inklusive automatischem Reconnect bei Verbindungsabbruch.
-* **Voice-to-Text (Mic):** Wer keine Lust zum Tippen hat, kann seine Stimme nutzen, die sofort in Text umgewandelt und in den Chat eingefügt wird.
-* **Spontaner Bild-Upload:** Unabhängig von den Lernmaterialien im Setup, können Schüler direkt im Chat eine neue Umgebung abfotografieren oder ein Bild hochladen, um sofort mit der KI darüber zu diskutieren.
-* **Live-Token-Zähler:** Transparente Anzeige des API-Token-Verbrauchs am oberen Bildschirmrand.
-* **Session-Report:** Mit einem Klick auf "Report" generiert die KI einen detaillierten, ehrlichen Bericht über die aktuelle Lektion, die Fehler und den Fortschritt.
+### 📚 4. 10 learning modes
 
-### 📚 4. 10 Spezialisierte Lernmodi
-
-Die Plattform bietet **10 verschiedene Modi**, aufgeteilt in 4 Kategorien:
-
-| Kategorie | Modi |
-|-----------|------|
+| Category | Modes |
+|----------|-------|
 | ⚙️ General | Open Tutor |
 | 📚 Foundation | Vocabulary Driller, Grammar Tutor, Reading & Translation |
 | 🎭 Simulation | Role-Play, Debate Room, Story Co-creation |
-| 🎓 Specialized | Image Discussion, Exam Prep, Free Practice |
+| 🎓 Specialised | Image Discussion, Exam Prep, Free Practice |
 
-Ein besonderes Highlight:
-* **Vocabulary Driller (Der Eltern-Ersatz):** Nie wieder müssen Eltern Vokabeln abfragen! Schüler fotografieren einfach die Vokabelseite aus ihrem Schulbuch, laden das Bild hoch (via OCR verarbeitet), und die KI fragt die Vokabeln systematisch ab. Das eingebaute **3×-Meisterschaftssystem** markiert ein Wort erst dann als "gemeistert" ✅, wenn es dreimal hintereinander richtig beantwortet wurde — für nachhaltiges Lernen statt oberflächlichem Auswendiglernen.
-* **Free Practice:** Schüler sprechen oder schreiben frei ohne Unterbrechung — am Ende gibt die KI einen strukturierten, ehrlichen Feedback-Report.
-* **Exam Prep:** Vorbereitung auf IELTS, TOEFL, Goethe-Zertifikat, DELF und andere Prüfungen mit realistischen Übungsaufgaben.
+Highlights:
+* **Vocabulary Driller:** photograph a vocabulary page from a school book, upload it, and the AI tests you on every word. A word only counts as mastered ✅ after **3 correct answers in a row**.
+* **Free Practice:** speak or write freely without interruptions, then get a structured feedback report at the end.
+* **Exam Prep:** practice tasks for IELTS, TOEFL, Goethe-Zertifikat, DELF and other exams.
 
-Jeder Modus ist auch mit 3 Immersionsstufen kombinierbar:
-* **Beginner** (80% Muttersprache)
-* **Balanced** (50% / 50%)
-* **Immersion** (80% Zielsprache)
+Each mode works with 3 immersion levels:
+* **Beginner:** 80% native language
+* **Balanced:** 50% / 50%
+* **Immersion:** 80% target language
 
-### 🔒 5. Sicherheit & Datenschutz (Zero-Knowledge Architecture)
-Dieses Projekt wurde nach dem **"Bring Your Own Key" (BYOK)** Prinzip entwickelt.
-* **Keine Speicherung auf Servern:** Der eingegebene Gemini API-Schlüssel wird ausschließlich lokal im `sessionStorage` des Computers gespeichert. Beim Schließen des Browsers **oder des Tabs** wird er spurlos gelöscht — im Gegensatz zu `localStorage`, der dauerhaft gespeichert bleibt.
-* **Direkte Kommunikation:** Alle Daten (Sprache, OCR, Chat) fließen direkt vom Browser zu den Google-Servern. Der Entwickler hat absolut keinen Zugriff auf die API-Schlüssel oder Chat-Inhalte der Nutzer. Der API-Schlüssel verlässt niemals Ihren Browser — er wird direkt an Google gesendet, ohne den Entwickler-Server zu berühren. Auch Datei-Uploads (OCR) werden direkt vom Browser zu Google hochgeladen — kein Umweg über den Server des Entwicklers.
-* **Sichere Firebase-Anmeldung:** Authentifizierung via Google Login (OAuth), wobei Firebase lediglich zur Speicherung der Vokabeln genutzt wird.
+### 🔒 5. Security and privacy ("bring your own key")
+* **Your API key isn't stored on any server.** It's kept only in your browser's `sessionStorage` and is deleted when you close the tab or browser.
+* **Direct connection to Google.** Voice, chat and file uploads go straight from your browser to Google. The developer's server never sees your API key or your conversations.
+* **Google sign-in through Firebase.** Firebase is used only to save your flashcards.
 
 ---
 
-## 🛠️ Technologie-Stack
+## 🛠️ Tech stack
 
-| Bereich | Technologie |
-|---------|-------------|
+| Area | Technology |
+|------|------------|
 | **Frontend** | Next.js (App Router), Tailwind CSS |
-| **Live Voice** | Gemini Live API (`gemini-3.1-flash-live-preview`) via BidiGenerateContent WebSockets |
-| **OCR & Analyse** | Gemini REST API (`gemini-2.5-flash-lite`), Google AI File Manager (Resumable Uploads) |
-| **Auth & Datenbank** | Firebase Auth (Google OAuth), Cloud Firestore |
+| **Live voice** | Gemini Live API (`gemini-3.1-flash-live-preview`) over BidiGenerateContent WebSockets |
+| **OCR and analysis** | Gemini REST API (`gemini-2.5-flash-lite`), Google AI File Manager (resumable uploads) |
+| **Auth and database** | Firebase Auth (Google OAuth), Cloud Firestore |
 | **Hosting** | Vercel |
 
 ---
 
-## 💻 Lokale Installation & Einrichtung
+## 💻 Run it locally
 
-### 1. Repository klonen
+### 1. Clone the repository
 ```bash
-git clone https://github.com/mohamad-alaaeddine/ai-teacher.git
+git clone https://github.com/Ali-Alaedin/ai-teacher.git
 cd ai-teacher
 ```
 
-### 2. Abhängigkeiten installieren
+### 2. Install dependencies
 ```bash
 npm install
 ```
 
-### 3. Umgebungsvariablen einrichten (Firebase)
-Erstellen Sie eine `.env.local` Datei im Hauptverzeichnis und fügen Sie Ihre Firebase-Anmeldedaten hinzu (eine `.env.example` Datei liegt im Repository als Vorlage bereit):
+### 3. Add your Firebase settings
+Create a `.env.local` file in the project folder:
 
 ```env
-NEXT_PUBLIC_FIREBASE_API_KEY=ihr_firebase_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=ihr_auth_domain
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=ihre_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=ihr_storage_bucket
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=ihre_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=ihre_app_id
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 ```
 
-### 🔑 4. Woher bekomme ich den Gemini API-Schlüssel? (Kostenlos)
-Um die App zu nutzen, benötigen Sie einen Gemini API-Schlüssel von Google.
-Das Beste daran: **Die Nutzung ist aktuell im "Free Tier" (kostenlose Stufe) von Google völlig kostenlos!**
+### 🔑 4. Get a free Gemini API key
+You need a Gemini API key from Google. Google's free tier currently covers normal use.
 
-So erhalten Sie den Schlüssel in unter 1 Minute:
-1. Besuchen Sie [Google AI Studio](https://aistudio.google.com/app/apikey).
-2. Melden Sie sich mit Ihrem normalen Google-Konto an.
-3. Klicken Sie auf **"Create API key"**.
-4. Kopieren Sie den Schlüssel. (Sie tragen ihn direkt auf der Startseite der App ein — er muss **nicht** in die `.env` Datei!).
+1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey).
+2. Sign in with your Google account.
+3. Click **"Create API key"**.
+4. Copy the key. You paste it on the app's start screen. It does **not** go in the `.env` file.
 
-### 5. Lokalen Server starten
+### 5. Start the app
 ```bash
 npm run dev
 ```
 
-Öffnen Sie [http://localhost:3000](http://localhost:3000), melden Sie sich an, fügen Sie Ihren API-Schlüssel ein und starten Sie Ihre erste Lektion!
+Open [http://localhost:3000](http://localhost:3000), sign in, paste your API key and start your first lesson.
 
 ---
 
-## ⚠️ Bekannte Einschränkungen
+## ⚠️ Known limitations
 
-* Die Gemini Live API (`gemini-3.1-flash-live-preview`) ist ein Preview-Modell — gelegentliche Verbindungsabbrüche sind möglich. Die App reconnectet automatisch.
-* Der Free Tier von Google AI hat Rate Limits — bei intensiver Nutzung kann es zu kurzen Verzögerungen kommen.
-* Datei-Uploads werden nach der OCR-Analyse von Google's File Manager automatisch nach 48 Stunden gelöscht.
+* The Gemini Live model is a preview model, so the connection sometimes drops. The app reconnects automatically.
+* Google's free tier has rate limits. Heavy use can cause short delays.
+* Google's File Manager deletes uploaded files automatically 48 hours after analysis.

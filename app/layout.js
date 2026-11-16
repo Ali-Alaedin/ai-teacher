@@ -12,8 +12,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "AI Teacher - Interactive Learning",
-  description: "Your personal AI English Teacher powered by Gemini",
+  title: "Buddy AI – Your AI Language Teacher",
+  description: "Practise a new language by talking to an AI teacher that understands your own books and notes. Powered by Gemini.",
+  applicationName: "Buddy AI",
+  appleWebApp: {
+    capable: true,
+    title: "Buddy AI",
+    statusBarStyle: "default",
+  },
+};
+
+export const viewport = {
+  themeColor: "#0EA5E9",
 };
 
 export default function RootLayout({ children }) {

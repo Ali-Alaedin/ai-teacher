@@ -15,8 +15,14 @@ export const runtime = 'nodejs';
 
 const LOG_PATH = join(process.cwd(), "teacher_app_debug.log");
 
+// Debug logging is for local development only. In production this route
+// is switched off so nobody can read or write session logs on the server.
+const IS_PROD = process.env.NODE_ENV === "production";
+const disabled = () => NextResponse.json({ ok: false, disabled: true }, { status: 404 });
+
 // ── ROUTE HANDLER ────────────────────────────────────────────
 export async function POST(req) {
+  if (IS_PROD) return disabled();
   try {
     const body = await req.json();
 
@@ -45,6 +51,7 @@ export async function POST(req) {
 
 // ── GET: Log lesen (optional für Debugging) ──────────────────
 export async function GET() {
+  if (IS_PROD) return disabled();
   try {
     const { readFile } = await import("fs/promises");
 

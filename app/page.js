@@ -1087,7 +1087,7 @@ RULES: Be BRUTALLY HONEST — no false praise. Quote EXACT mistakes. Keep it und
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className={`flex flex-col items-stretch w-full max-w-md min-h-0 ${needsScrollState ? "h-auto" : "h-full"}`}
+            className={`flex flex-col items-stretch w-full max-w-md min-h-0 ${needsScrollState ? "h-auto" : "h-full"} ${referenceFiles.length === 0 ? "justify-center" : ""}`}
           >
             {/* Robot header */}
             <div className="flex flex-col items-center shrink-0 mb-[clamp(0.4rem,1.5dvh,1rem)] hide-on-short">
@@ -1095,12 +1095,14 @@ RULES: Be BRUTALLY HONEST — no false praise. Quote EXACT mistakes. Keep it und
                 <RobotSVG size="100%" />
               </div>
               <h1 className={`setup-title text-[clamp(1.4rem,3.8dvh,2.1rem)] font-black leading-none tracking-tighter text-center transition-colors px-2 ${dk ? "text-white" : "text-zinc-900"}`}>
-                {tr("setup", "title")}
+                {/* Non-breaking space keeps the 👋 on the same line as the last word */}
+                {tr("setup", "title").replace(/ (\S+)$/, " $1")}
               </h1>
             </div>
 
             {/* Setup card */}
-            <div className={`setup-card w-full flex flex-col flex-1 min-h-0 ${needsScrollState ? "overflow-visible" : "overflow-hidden"} rounded-[2.5rem]
+            {/* Card only stretches to full height once files are listed, so the empty state has no big gap */}
+            <div className={`setup-card w-full flex flex-col ${referenceFiles.length > 0 ? "flex-1" : ""} min-h-0 ${needsScrollState ? "overflow-visible" : "overflow-hidden"} rounded-[2.5rem]
               p-[clamp(0.85rem,2.2dvh,1.5rem)] gap-[clamp(0.4rem,1.2dvh,0.75rem)]
               shadow-2xl border transition-all duration-300
               ${dk ? "bg-zinc-800 border-zinc-700" : "bg-white border-white"}`}>
@@ -1187,19 +1189,18 @@ RULES: Be BRUTALLY HONEST — no false praise. Quote EXACT mistakes. Keep it und
 
               {/* File list */}
               <div
-                className={`overflow-y-auto file-list-scrollbar pr-1.5 -mr-1.5 flex-1 ${
-                  isTrueDesktop
-                    ? "min-h-[76px] max-h-[clamp(76px,24dvh,300px)]"
-                    : needsScrollState ? "min-h-[76px]" : "min-h-0"
+                className={`overflow-y-auto file-list-scrollbar pr-1.5 -mr-1.5 ${
+                  referenceFiles.length === 0
+                    ? "shrink-0"
+                    : isTrueDesktop
+                      ? "flex-1 min-h-[76px] max-h-[clamp(76px,24dvh,300px)]"
+                      : needsScrollState ? "flex-1 min-h-[76px]" : "flex-1 min-h-0"
                 }`}
               >
                 {referenceFiles.length === 0 ? (
-                  <div className={`h-full min-h-[30px] md:min-h-[64px] flex items-center justify-center border border-dashed rounded-xl transition-colors ${
-                    dk ? "border-zinc-700 text-zinc-600" : "border-zinc-200 text-zinc-400"}`}>
-                    <span className="text-[10px] font-bold uppercase tracking-wider">
-                      {targetLang === "ar" ? "قائمة الملفات فارغة" : "DATEIEN (PDF, BILD, TEXT) EMPTY"}
-                    </span>
-                  </div>
+                  <p className={`text-[11px] text-center px-2 transition-colors ${dk ? "text-zinc-500" : "text-zinc-400"}`}>
+                    {tr("setup", "filesEmpty")}
+                  </p>
                 ) : (
                   <div className="space-y-1.5">
                     {referenceFiles.map(f => (

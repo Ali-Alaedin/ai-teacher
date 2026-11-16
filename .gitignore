@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 certificates
+# local debug logs (never commit: may contain session content)
+gemini_logs.txt
+teacher_app_debug.log
+ocr_output.json
+*.log
